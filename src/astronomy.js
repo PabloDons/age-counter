@@ -61,5 +61,5 @@ export function getEclipticLongitudalVelocity(jd) {
 
   const value = (L1 + 2 * L2 * tau + 3 * L3 * tau2 + 4 * L4 * tau3 + 5 * L5 * tau4) / 1e8;
 
-  return (value * RAD2DEG) / 365250; // degrees per day
+  return (value * RAD2DEG) / 1000; // degrees per year
 }
