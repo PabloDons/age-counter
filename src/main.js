@@ -9,7 +9,7 @@ function toDateObj(str) {
 
 document.addEventListener("DOMContentLoaded", function(){
     if (!window.localStorage.getItem("birthday")) {
-        window.localStorage.setItem("birthday", "1998-05-07")
+        window.localStorage.setItem("birthday", "2000-01-01")
     }
 
     const dateinput = document.getElementById("dateinput")
