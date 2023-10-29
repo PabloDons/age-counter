@@ -1,22 +1,38 @@
+import assert from "assert"
 import {ageInYears, agingVelocity} from "./utils.js"
 import "./style/style.sass"
 
+const DEFAULT_DATE = "2000-01-01"
+
 function toDateObj(str) {
     const arr = str.split("-").map(Number);
+    assert(arr.length == 3)
     return new Date(arr[0], arr[1]-1, arr[2]);
+}
+
+function hashToDateVal(str) {
+    if (!str) {
+        return null
+    }
+    try {
+        toDateObj(str)
+        return str;
+    } catch (error) {}
+    return null
 }
 
 document.addEventListener("DOMContentLoaded", function(){
     const dateinput = document.getElementById("dateinput")
     const counterspan = document.getElementById("counternum")
-
-    if (window.localStorage.getItem("birthday")) {
-        dateinput.value = window.localStorage.getItem("birthday")
-    }
+    dateinput.value =
+        hashToDateVal(window.location.hash)
+        || hashToDateVal(window.localStorage.getItem("birthday"))
+        || DEFAULT_DATE
 
     dateinput.addEventListener("change", (ev)=>{
         const datevalue = ev.target.value
         window.localStorage.setItem("birthday", datevalue)
+        window.location.hash = datevalue
     });
 
     let prevage = 0
