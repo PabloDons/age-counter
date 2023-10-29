@@ -6,12 +6,13 @@ const DEFAULT_DATE = "2000-01-01"
 function toDateObj(str) {
     const arr = str.split("-").map(Number);
     if (arr.length !== 3) {
-        throw Error("Expected date string to contain 3 numbers")
+        throw new Error("Expected date string to contain 3 numbers")
     }
     return new Date(arr[0], arr[1]-1, arr[2]);
 }
 
 function hashToDateVal(str) {
+    str = str.substr(1)
     if (!str) {
         return null
     }
