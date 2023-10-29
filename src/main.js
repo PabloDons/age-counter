@@ -6,20 +6,21 @@ const DEFAULT_DATE = "2000-01-01"
 function toDateObj(str) {
     const arr = str.split("-").map(Number);
     if (arr.length !== 3) {
-        throw new Error("Expected date string to contain 3 numbers")
+        return null
     }
     return new Date(arr[0], arr[1]-1, arr[2]);
 }
 
 function hashToDateVal(str) {
-    str = str.substr(1)
+    if (str[0] === "#") {
+        str = str.substr(1)
+    }
     if (!str) {
         return null
     }
-    try {
-        toDateObj(str)
+    if (toDateObj(str)) {
         return str;
-    } catch (error) {}
+    }
     return null
 }
 
@@ -30,6 +31,9 @@ document.addEventListener("DOMContentLoaded", function(){
         hashToDateVal(window.location.hash)
         || hashToDateVal(window.localStorage.getItem("birthday"))
         || DEFAULT_DATE
+
+    window.location.hash = dateinput.value
+    window.localStorage.setItem("birthday", dateinput.value)
 
     dateinput.addEventListener("change", (ev)=>{
         const datevalue = ev.target.value
