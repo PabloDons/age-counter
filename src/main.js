@@ -1,4 +1,3 @@
-import assert from "assert"
 import {ageInYears, agingVelocity} from "./utils.js"
 import "./style/style.sass"
 
@@ -6,7 +5,9 @@ const DEFAULT_DATE = "2000-01-01"
 
 function toDateObj(str) {
     const arr = str.split("-").map(Number);
-    assert(arr.length == 3)
+    if (arr.length !== 3) {
+        throw Error("Expected date string to contain 3 numbers")
+    }
     return new Date(arr[0], arr[1]-1, arr[2]);
 }
 
