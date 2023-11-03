@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aa-js": "^2.0.7",
+    "aa-js": "^3.0.1",
     "workbox-webpack-plugin": "^7.0.0"
   },
   "devDependencies": {

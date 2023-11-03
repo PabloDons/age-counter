@@ -12,9 +12,10 @@ function toDateObj(str) {
 }
 
 function hashToDateVal(str) {
-    if (str[0] === "#") {
+    if (str && str[0] === "#") {
         str = str.substr(1)
     }
+    console.log(str)
     if (!str) {
         return null
     }
@@ -41,14 +42,9 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location.hash = datevalue
     });
 
-    let prevage = 0
-    let prevtime = ageInYears(toDateObj(dateinput.value))
     const step = (timestamp) => {
         const currage = ageInYears(toDateObj(dateinput.value))
         counterspan.innerText = currage.toFixed(9)
-        
-        prevage = currage
-        prevtime = timestamp
         window.requestAnimationFrame(step)
     }
     window.requestAnimationFrame(step)
